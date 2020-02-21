@@ -9,5 +9,5 @@ const ResultsShowScreen = () => {
   );
 };
 
-const styles = StyleSheet({});
+const styles = StyleSheet.create({});
 export default ResultsShowScreen;
