@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import SearchBar from "../components/SearchBar";
-import useResults from "../hooks/useResults";
-import ResultsList from "../components/ResultsList";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import SearchBar from '../components/SearchBar';
+import useResults from '../hooks/useResults';
+import ResultsList from '../components/ResultsList';
 
-const SearchScreen = ({navigation}) => {
-  const [term, setTerm] = useState("");
+const SearchScreen = () => {
+  const [term, setTerm] = useState('');
   const [yelpApi, results, errorMessage] = useResults();
 
   const showResultsByPrice = price => {
@@ -24,12 +24,12 @@ const SearchScreen = ({navigation}) => {
       ) : null}
 
       <ScrollView>
-        <ResultsList navigation={navigation} results={showResultsByPrice("$")} title="Cost Effective" />
-        <ResultsList navigation={navigation} results={showResultsByPrice("$$")} title="Big Pricer" />
-        <ResultsList navigation={navigation} results={showResultsByPrice("$$$")} title="Big Spender" />
-        {!showResultsByPrice("$$$$") && (
+        <ResultsList results={showResultsByPrice('$')} title="Cost Effective" />
+        <ResultsList results={showResultsByPrice('$$')} title="Big Pricer" />
+        <ResultsList results={showResultsByPrice('$$$')} title="Big Spender" />
+        {!showResultsByPrice('$$$$') && (
           <ResultsList
-            results={showResultsByPrice("$$$$")}
+            results={showResultsByPrice('$$$$')}
             title="Bigger Spender"
           />
         )}
@@ -40,7 +40,7 @@ const SearchScreen = ({navigation}) => {
 
 const Styles = StyleSheet.create({
   errorStyle: {
-    color: "red"
+    color: 'red'
   }
 });
 

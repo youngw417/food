@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
   TouchableOpacity
-} from "react-native";
-import ResultsDetail from "./ResultsDetail";
+} from 'react-native';
+// to inject navigation props directly to ResultsList component
+import { withNavigation } from 'react-navigation';
+import ResultsDetail from './ResultsDetail';
 
 const ResultsList = ({ title, results, navigation }) => {
   return (
@@ -19,7 +21,9 @@ const ResultsList = ({ title, results, navigation }) => {
         data={results}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("Results")}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Results', { id: item.id })}
+            >
               <ResultsDetail result={item} />
             </TouchableOpacity>
           );
@@ -35,10 +39,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
     marginLeft: 15
   }
 });
 
-export default ResultsList;
+export default withNavigation(ResultsList);
